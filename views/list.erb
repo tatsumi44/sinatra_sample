@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>good_luck</title>
+  <link rel="shortcut icon" href="public/favicon.ico">
+
+</head>
+<body>
+<!--<table>-->
+  <%# @stations.each do |station| %>
+<!--    <tr class="station">-->
+<!--      <td class="line"><%#= station["line"] %></td>-->
+<!--      <td class="name"><%#= station["name"] %></td>-->
+<!--    </tr>-->
+  <%# end %>
+<!--</table>-->
+
+<table>
+  <% for station1 in @stations do  %>
+    <tr class="station">
+      <td class="line"><%=station1["line"] %></td>
+      <td class="name"><%=station1["name"]  %></td>
+    </tr>
+  <% end %>
+
+</table>
+<div>
+  <!--    <p>-->
+  <%#= @stations %>
+  <!--    </p>-->
+  <h2 id ="detail">次の駅</h2>
+  <div class="next"><p class="next1" style="font-size: 40px;color: coral;"></p></div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+    window.onload = function() {
+        let num = 0
+        $(".station").on("click",function () {
+            // console.log(`クリック${num}`)
+            // num ++
+            var line = $(".line",this).text();
+            var name = $(".name",this).text();
+            console.log(`${line}と${name}`);
+            $.ajax({
+                type: "POST",
+                url: "/api",
+                data: {line: line, name: name},
+                datatype: 'json'
+            })
+                .done(function(json) {
+                    // console.log("good")
+                    console.log(JSON.parse(json))
+                    res = JSON.parse(json)
+                    next_station = res["next"]
+                    console.log(next_station)
+                    $(".next1").text(next_station)
+                });
+
+        })
+    }
+
+</script>
+
+</body>
+</html>

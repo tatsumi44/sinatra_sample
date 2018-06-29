@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>good_luck</title>
+  <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body>
+<table>
+  <img src="favicon.ico" alt="">
+  <% @stations.each do |station| %>
+    <tr class="station">
+      <td class="line"><%= station["line"] %></td>
+      <td class="name"><%= station["name"] %></td>
+    </tr>
+  <% end %>
+</table>
+
+<table>
+  <% for station1 in @stations do  %>
+  <tr>
+    <td><%= station1["line"] %></td>
+    <td><%=station1["name"]  %></td>
+  </tr>
+  <% end %>
+</table>
+</body>
+</html>

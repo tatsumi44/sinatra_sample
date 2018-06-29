@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>good_luck</title>
+  <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body>
+<img src="IMG_0005.png" alt="" style="width: 150px;height: 100px">
+<img src="favicon.ico" alt="">
+<form action="/list" method="post">
+  <input type="text" id = "x" name="x" placeholder="x">
+  <input type="text" id="y" name="y" placeholder="y">
+  <input type="submit" value="決定">
+</form>
+
+<table>
+  <%# if @histories != nil %>
+<!--  <p> <%# @historys[0] %></p>-->
+  <% for i in @historys  %>
+  <tr>
+    <td><%= i.x %>,<%= i.y %></td>
+    <td>
+      <form action="<%= i.id %>/update" method="post">
+        <input type="submit" value="解除">
+      </form>
+    </td>
+    <td>
+      <form action="<%= i.id %>/update" method="post">
+        <input type="submit" value="お気に入り登録">
+      </form>
+    </td>
+<!--    <td><p style="color: crimson"><%#= i.id %></p>a</td>-->
+    <td>
+      <form action="<%= i.id %>/delete" method="post">
+        <input type="submit" value="[x]">
+      </form>
+    </td>
+  </tr>
+
+
+  <% end %>
+  <%# end  %>
+</table>
+<h2>お気に入り</h2>
+<ul>
+  <% @favorites.each do |favorite|%>
+    <li>
+      <%= favorite.x%>,
+      <%= favorite.y %>
+    </li>
+  <%end	%>
+
+</ul>
+
+</body>
+</html>
